@@ -86,30 +86,32 @@ class Planet {
     short _orbital_vel; //Orbital velosity
     
     
-    //Class seter
+    //CLASS INSTANCES
     public Name name = new Name();
     
     public class Name{
         void set(String newName){
-            if(ID == -1){
-                ID = nextFreeID;
-                IDs.add((Short)(ID));
-                nextFreeID++;
-                
-                _name = newName;
-                Objects.add(_name);
-                
+            for(int i = 0; i < Objects.size(); i++){
+                if(Objects.get(i).equals(newName)){
+                    short objID = IDs.get(i);
+                    System.out.println("❌ Object with name "+newName+" already exists, ID: "+objID);
+                }
+                else{
+                    if(ID == -1){
+                        ID = nextFreeID;
+                        IDs.add((Short)(ID));
+                        nextFreeID++;
+                        
+                        _name = newName;
+                        Objects.add(_name);
+                    }
+                    else{
+                        _name = newName;
+                        Objects.set(ID, _name);
+                        
+                    }
+                }
             }
-            else{
-                _name = newName;
-                Objects.set(ID, _name);
-                Objects.add(_name);
-                
-            }
-            for(int i = 0; Objects.size() < i; i++){
-                if(Objects.get(i).equals(_name)){}
-            }
-            _name = newName;
         }
         
         String get(){
@@ -241,7 +243,7 @@ class Planet {
                     _apoapsis = Apo;
                     Orbit.this.print("apoapsis");
                 }
-                else if(ToSet == "Pe" || ToSet == "Apoapsis"){
+                else if(ToSet == "Pe" || ToSet == "Periapsis"){
                     _periapsis = Peri;
                     Orbit.this.print("periapsis");
                 }

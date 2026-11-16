@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "KerbolOrbiter",
+      "request": "launch",
+      "mainClass": "KerbolOrbiter",
+      "projectName": "Kerbol-Orbiter_6f4ad58f"
+    },
+    {
+      "name": "Run Kerbol Orbiter (CMD)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "cmd /c \"chcp 65001 && java -Dfile.encoding=UTF-8 -cp . KerbolOrbiter\"",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile Kerbol Orbiter",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "chcp 65001 && javac -encoding UTF-8 KerbolOrbiter.java"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Kerbol Orbiter",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "chcp 65001 && java -Dfile.encoding=UTF-8 -cp . KerbolOrbiter"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
