@@ -14,7 +14,8 @@ A small Java learning project inspired by Kerbal Space Program. The goal is to m
 ## Project structure
 
 - `KerbolOrbiter.java` – main entry point and example system setup
-- `Planet.java` – the planet model (embedded in the same source file for this version)
+- `Planet` – the planet model, embedded in `KerbolOrbiter.java` for this version
+- `PlanetNameTest.java` – small test program for planet naming and renaming
 
 ## Prerequisites
 
@@ -94,6 +95,17 @@ You can configure VS Code to run the project in a CMD-style terminal by creating
 ```
 
 Then open Run and Debug in VS Code and select `Run Kerbol Orbiter (CMD)`, or run the task from the Terminal menu.
+
+## Run the naming tests
+
+This project currently uses a small Java test program, so you do not need to install a test framework. In Command Prompt, run:
+
+```bat
+javac -encoding UTF-8 KerbolOrbiter.java tests\PlanetNameTest.java
+java -Dfile.encoding=UTF-8 -cp .;tests PlanetNameTest
+```
+
+The test source is in the `tests` folder but intentionally has no `package` declaration. `Planet` is currently in Java's default package, and Java does not allow classes in a named package to import classes from the default package. The tests check that a planet gets its name and ID when first named, and that renaming it updates its existing registry entry without creating a duplicate. If all checks pass, you will see `All Planet naming tests passed.` You can also run the `Test Planet Naming` task from VS Code's Terminal → Run Task menu.
 
 ## Notes
 

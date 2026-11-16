@@ -92,26 +92,23 @@ class Planet {
     public class Name{
         void set(String newName){
             for(int i = 0; i < Objects.size(); i++){
-                if(Objects.get(i).equals(newName)){
+                if(Objects.get(i).equals(newName) && IDs.get(i) != ID){
                     short objID = IDs.get(i);
                     System.out.println("❌ Object with name "+newName+" already exists, ID: "+objID);
-                }
-                else{
-                    if(ID == -1){
-                        ID = nextFreeID;
-                        IDs.add((Short)(ID));
-                        nextFreeID++;
-                        
-                        _name = newName;
-                        Objects.add(_name);
-                    }
-                    else{
-                        _name = newName;
-                        Objects.set(ID, _name);
-                        
-                    }
+                    return;
                 }
             }
+
+            if(ID == -1){
+                ID = nextFreeID;
+                IDs.add(ID);
+                nextFreeID++;
+                Objects.add(newName);
+            }
+            else{
+                Objects.set(ID, newName);
+            }
+            _name = newName;
         }
         
         String get(){
