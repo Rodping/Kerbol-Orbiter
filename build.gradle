@@ -1,0 +1,45 @@
+plugins {
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        java {
+            setSrcDirs(['.'])
+            include 'KerbolOrbiter.java'
+        }
+    }
+    namingTests {
+        java {
+            setSrcDirs(['.'])
+            include 'PlanetNameTest.java'
+        }
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+application {
+    mainClass = 'KerbolOrbiter'
+}
+
+tasks.register('planetNameTest', JavaExec) {
+    group = 'verification'
+    description = 'Runs the planet naming tests.'
+    dependsOn tasks.named('namingTestsClasses')
+    classpath = sourceSets.namingTests.runtimeClasspath
+    mainClass = 'PlanetNameTest'
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('planetNameTest')
+}
